@@ -47,13 +47,11 @@ export class Application extends React.Component {
                 .spawn(["bluetoothctl", "devices"], { err: "message", superuser: "try" })
                 .done((success) => {
                         const devicesArray = [];
-                        success.split("\n").forEach(element => {
-                            let index = 0;
-  
-                            const device = element.trim();
-                            devicesArray.push(device);
-
-                            index += 1;
+                        success.split(/\n\s*\n/).forEach(raw => {
+                            raw.split(/\n\s*/).forEach(element => {
+                                const device = element.trim();
+                                devicesArray.push(device);
+                            });
                         });
                         this.setState({ devices: devicesArray, isShowBtnInstall: false });
                 })
