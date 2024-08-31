@@ -93,11 +93,11 @@ clean:
 	rm -f $(SPEC)
 	rm -f po/LINGUAS
 
-install: $(DIST_TEST) po/LINGUAS
+install: $(DIST_TEST)
 	mkdir -p $(DESTDIR)$(PREFIX)/share/cockpit/$(PACKAGE_NAME)
 	cp -r dist/* $(DESTDIR)$(PREFIX)/share/cockpit/$(PACKAGE_NAME)
 	mkdir -p $(DESTDIR)$(PREFIX)/share/metainfo/
-	msgfmt --xml -d po \
+	# msgfmt --xml -d po \
 		--template $(APPSTREAMFILE) \
 		-o $(DESTDIR)$(PREFIX)/share/metainfo/$(APPSTREAMFILE)
 
