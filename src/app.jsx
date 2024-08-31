@@ -192,7 +192,7 @@ export class Application extends React.Component {
                                                     return (
                                                         <FlexItem key={item} style={{ width: "15%" }}>
 
-                                                            <Card key={item} id="expandable-card-icon" isExpanded=true>
+                                                            <Card key={item} id="expandable-card-icon" isExpanded="true">
                                                                 <CardHeader
                                                                     style={{ justifyContent: 'normal' }}
                                                                     onExpand={(e) => this.handleOnExpand(e, chave)}
