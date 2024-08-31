@@ -46,22 +46,16 @@ export class Application extends React.Component {
         cockpit
                 .spawn(["bluetoothctl", "devices"], { err: "message", superuser: "try" })
                 .done((success) => {
-                        const devicesJson = {};
-                        let devicesGroupName = "Devices";
-                        success.split(/\n\s*\n/).forEach(raw => {
+                        const devicesArray = [];
+                        success.split(/\n\s*\n/).forEach(element => {
                             let index = 0;
-                            raw.split(/\n\s*/).forEach(element => {
-                                if (index === 0) {
-                                    devicesJson[devicesGroupName] = {};
-                                }
   
-                                const device = element.trim();
-                                devicesJson[devicesGroupName][device] = device;
+                            const device = element.trim();
+                            devicesArray.push(device);
 
-                                index += 1;
-                            });
+                            index += 1;
                         });
-                        this.setState({ devices: devicesJson, isShowBtnInstall: false });
+                        this.setState({ devices: devicesArray, isShowBtnInstall: false });
                 })
                 .fail((err) => {
                     if (err.message === "not-found") {
@@ -76,22 +70,8 @@ export class Application extends React.Component {
                 });
     };
 
-    setIcon = (name) => {
-        if (typeof name !== 'undefined') {
-            if (name.includes('fan')) {
-                return <FanIcon size='md' />;
-            }
-            if (name.includes('temp')) {
-                return <ThermometerHalfIcon size='md' />;
-            }
-            if (name.includes('in')) {
-                return <ChargingStationIcon size='md' />;
-            }
-            if (name.includes('cpu')) {
-                return <CpuIcon size='md' />;
-            }
-        }
-        return <></>;
+    setIcon = () => {
+        return <CpuIcon size='md' />;
     };
 
     adjustLabel = (label) => {
@@ -146,21 +126,6 @@ export class Application extends React.Component {
                 });
     };
 
-    adjustValue = (name, value) => {
-        if (typeof name !== 'undefined') {
-            if (name.includes('temp')) {
-                return parseFloat(value).toFixed(1)
-                            .toString()
-                            .concat(' °C');
-            }
-
-            if (name.includes('fan')) {
-                return value.toString().concat(' RPM');
-            }
-        }
-        return value;
-    };
-
     render() {
         const { devices, alert, isShowBtnInstall, isShowLoading } = this.state;
         return (
@@ -173,54 +138,10 @@ export class Application extends React.Component {
                         {isShowBtnInstall ? <Button onClick={this.handleInstallBluetooth}>{_('Install')}</Button> : <></>}
 
                         {devices !== null
-                            ? Object.entries(devices).map((key, keyIndex) => {
+                            ? devices.map((key) => {
                                 return (
                                     <Card key={key}>
-                                        <CardTitle>{key[0]}
-                                            <Button variant="plain" aria-label="Action" onClick={() => this.hideCard(key[0])}>
-                                                <EyeSlashIcon />
-                                            </Button>
-                                        </CardTitle>
-
-                                        <CardBody>
-                                            <CardTitle>{key[1].Adapter}</CardTitle>
-
-                                            <Flex key={key[1]}>
-                                                {Object.entries(key[1]).map((item, itemIndex) => {
-                                                    if (itemIndex === 0) return "";
-                                                    const chave = keyIndex.toString() + itemIndex.toString();
-                                                    return (
-                                                        <FlexItem key={item} style={{ width: "15%" }}>
-
-                                                            <Card key={item} id="expandable-card-icon" isExpanded="true">
-                                                                <CardHeader
-                                                                    style={{ justifyContent: 'normal' }}
-                                                                    onExpand={(e) => this.handleOnExpand(e, chave)}
-                                                                    toggleButtonProps={{
-                                                                        id: 'toggle-button2',
-                                                                        'aria-label': 'Patternfly Details',
-                                                                        'aria-expanded': true
-                                                                    }}
-                                                                ><CardTitle>{item[0]}</CardTitle>
-                                                                    <Button variant="plain" aria-label="Action" onClick={() => this.hideCard(chave)}>
-                                                                        <EyeSlashIcon />
-                                                                    </Button>
-                                                                </CardHeader>
-                                                                <CardTitle>{this.setIcon(Object.keys(item[1])[0])} {this.adjustValue(Object.keys(item[1])[0], Object.values(item[1])[0])}
-                                                                </CardTitle>
-                                                                <CardExpandableContent>
-                                                                    <CardBody>
-                                                                        {Object.entries(item[1]).map((devices, index) => (
-                                                                            <span key={devices}>{this.adjustLabel(devices[0])}: {devices[1]}<br /></span>
-                                                                        ))}
-                                                                    </CardBody>
-                                                                </CardExpandableContent>
-                                                            </Card>
-                                                        </FlexItem>
-                                                    );
-                                                })}
-                                            </Flex>
-                                        </CardBody>
+                                        <CardTitle>{this.setIcon()} {key}</CardTitle>
                                     </Card>
                                 );
                             }
