@@ -50,7 +50,7 @@ export class Application extends React.Component {
                         success.split(/\n\s*\n/).forEach(raw => {
                             console.log(raw);
                             raw.split(/\n\s*/).forEach(element => {
-                                const device = element.trim();
+                                const device = element/*.trim()*/;
                                 devicesArray.push(device);
                             });
                         });
