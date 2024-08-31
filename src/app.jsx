@@ -47,7 +47,7 @@ export class Application extends React.Component {
                 .spawn(["bluetoothctl", "devices"], { err: "message", superuser: "try" })
                 .done((success) => {
                         const devicesArray = [];
-                        success.split(/\n\s*\n/).forEach(element => {
+                        success.split(/\s*\n/).forEach(element => {
                             let index = 0;
   
                             const device = element.trim();
