@@ -134,7 +134,7 @@ export class Application extends React.Component {
                         {isShowBtnInstall ? <Button onClick={this.handleInstallBluetooth}>{_('Install')}</Button> : <></>}
 
                         {devices !== null
-                            ? devices.map((key) => {
+                            ? Array(devices).map((key) => {
                                 return (
                                     <Card key={key}>
                                         <CardTitle>{this.setIcon()} {key}</CardTitle>
