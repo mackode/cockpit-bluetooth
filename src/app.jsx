@@ -44,7 +44,7 @@ export class Application extends React.Component {
 
     loadDevices = () => {
         cockpit
-                .spawn(["bluetoothctl", "devices", { err: "message", superuser: "try" })
+                .spawn(["bluetoothctl", "devices"], { err: "message", superuser: "try" })
                 .done((success) => {
                         const devicesJson = {};
                         let devicesGroupName = "Devices";
