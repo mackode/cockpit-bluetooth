@@ -56,7 +56,7 @@ export class Application extends React.Component {
                                 }
   
                                 const device = element.trim();
-                                devicesJson[devicesGroupName].push(device);
+                                devicesJson[devicesGroupName][device] = device;
 
                                 index += 1;
                             });
