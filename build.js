@@ -97,7 +97,6 @@ const context = await esbuild.context({
             ]
         }),
         ...esbuildStylesPlugins,
-        cockpitPoEsbuildPlugin(),
         ...production ? [cockpitCompressPlugin()] : [],
         cockpitRsyncEsbuildPlugin({ dest: packageJson.name }),
         notifyEndPlugin(),
