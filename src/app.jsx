@@ -19,15 +19,15 @@
 
 import cockpit from 'cockpit';
 import React from 'react';
-import { Alert, Card, CardTitle, CardHeader, CardBody, CardExpandableContent, Checkbox, Button, Spinner, Flex, FlexItem } from '@patternfly/react-core';
-import { FanIcon, ThermometerHalfIcon, ChargingStationIcon, CpuIcon, EyeSlashIcon } from '@patternfly/react-icons/dist/esm/icons/';
+import { Alert, Card, CardTitle, CardBody, Button, Spinner } from '@patternfly/react-core';
+import { CpuIcon } from '@patternfly/react-icons/dist/esm/icons/';
 
 const _ = cockpit.gettext;
 
 export class Application extends React.Component {
     constructor() {
         super();
-        this.state = { devices: {}, intervalId: {}, alert: null, isShowBtnInstall: false, isShowLoading: false, isError: false };
+        this.state = { devices: [], intervalId: {}, alert: null, isShowBtnInstall: false, isShowLoading: false, isError: false };
     }
 
     componentDidMount() {
@@ -72,10 +72,6 @@ export class Application extends React.Component {
 
     setIcon = () => {
         return <CpuIcon size='md' />;
-    };
-
-    adjustLabel = (label) => {
-        return label.replace(label.substring(0, label.indexOf('_')) + '_', '');
     };
 
     setAlert = (msg, variant) => {
