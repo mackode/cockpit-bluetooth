@@ -98,8 +98,8 @@ install: $(DIST_TEST)
 	cp -r dist/* $(DESTDIR)$(PREFIX)/share/cockpit/$(PACKAGE_NAME)
 	mkdir -p $(DESTDIR)$(PREFIX)/share/metainfo/
 	# msgfmt --xml -d po \
-		--template $(APPSTREAMFILE) \
-		-o $(DESTDIR)$(PREFIX)/share/metainfo/$(APPSTREAMFILE)
+	# --template $(APPSTREAMFILE) \
+	# -o $(DESTDIR)$(PREFIX)/share/metainfo/$(APPSTREAMFILE)
 
 # this requires a built source tree and avoids having to install anything system-wide
 devel-install: $(DIST_TEST)
