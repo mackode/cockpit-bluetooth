@@ -46,34 +46,22 @@ export class Application extends React.Component {
         cockpit
                 .spawn(["bluetoothctl", "devices", { err: "message", superuser: "try" })
                 .done((success) => {
-                        const sensorsJson = {};
+                        const devicesJson = {};
+                        let devicesGroupName = "Devices";
                         success.split(/\n\s*\n/).forEach(raw => {
-                            let sensorsGroupName = "";
                             let index = 0;
-                            let sensorTitle = "";
                             raw.split(/\n\s*/).forEach(element => {
                                 if (index === 0) {
-                                    sensorsGroupName = element;
-                                    sensorsJson[sensorsGroupName] = {};
+                                    devicesJson[devicesGroupName] = {};
                                 }
-                                if (index === 1) {
-                                    const adapter = element.split(":");
-                                    sensorsJson[sensorsGroupName][adapter[0]] = adapter[1].trim();
-                                }
-                                if (index >= 2) {
-                                    const sensor = element.trim().split(":");
-                                    if (sensor[1] === "") {
-                                        sensorTitle = element.split(":")[0];
-                                        sensorsJson[sensorsGroupName][sensorTitle] = {};
-                                    } else {
-                                        sensorsJson[sensorsGroupName][sensorTitle][sensor[0]] = parseFloat(sensor[1].trim());
-                                    }
-                                }
+  
+                                const device = element.trim();
+                                devicesJson[devicesGroupName].push(device);
 
                                 index += 1;
                             });
                         });
-                        this.setState({ devices: sensorsJson, isShowBtnInstall: false });
+                        this.setState({ devices: devicesJson, isShowBtnInstall: false });
                 })
                 .fail((err) => {
                     if (err.message === "not-found") {
@@ -222,8 +210,8 @@ export class Application extends React.Component {
                                                                 </CardTitle>
                                                                 <CardExpandableContent>
                                                                     <CardBody>
-                                                                        {Object.entries(item[1]).map((sensors, index) => (
-                                                                            <span key={sensors}>{this.adjustLabel(sensors[0])}: {sensors[1]}<br /></span>
+                                                                        {Object.entries(item[1]).map((devices, index) => (
+                                                                            <span key={devices}>{this.adjustLabel(devices[0])}: {devices[1]}<br /></span>
                                                                         ))}
                                                                     </CardBody>
                                                                 </CardExpandableContent>
