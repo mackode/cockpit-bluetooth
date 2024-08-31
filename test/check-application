@@ -17,9 +17,9 @@ class TestApplication(testlib.MachineCase):
         b = self.browser
         m = self.machine
 
-        self.login_and_go("/sensors")
+        self.login_and_go("/bluetooth")
         # verify expected heading
-        b.wait_text(".pf-v5-c-card__title-text", "Sensors")
+        b.wait_text(".pf-v5-c-card__title-text", "Bluetooth")
 
 
 if __name__ == '__main__':

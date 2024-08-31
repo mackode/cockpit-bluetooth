@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="addon">
+  <id>org.cockpit_project.bluetooth</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <name>Bluetooth</name>
+  <summary>Bluetooth cockpit module</summary>
+  <description>
+    <p>
+      Bluetooth cockpit module
+    </p>
+  </description>
+  <extends>org.cockpit_project.cockpit</extends>
+  <launchable type="cockpit-manifest">bluetooth</launchable>
+  <url type="homepage">https://github.com/mackode/cockpit-bluetooth</url>
+  <url type="bugtracker">https://github.com/mackode/cockpit-bluetooth/issues</url>
+  <update_contact>b.makowski_AT_hotmail.com</update_contact>
+</component>

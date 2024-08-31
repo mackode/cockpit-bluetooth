@@ -1,11 +1,11 @@
-Name: cockpit-sensors
+Name: cockpit-bluetooth
 Version: %{VERSION}
 Release: 1%{?dist}
-Summary: Cockpit Sensors Module
+Summary: Cockpit Bluetooth Module
 License: LGPL-2.1-or-later
 
-Source0: https://github.com/ocristopfer/cockpit-sensors/releases/latest/download/cockpit-sensors.tar.xz
-Source1: https://github.com/ocristopfer/cockpit-sensors/releases/latest/download/cockpit-sensors-node.tar.xz
+Source0: https://github.com/mackode/cockpit-bluetooth/releases/latest/download/cockpit-bluetooth.tar.xz
+Source1: https://github.com/mackode/cockpit-bluetooth/releases/latest/download/cockpit-bluetooth-node.tar.xz
 BuildArch: noarch
 ExclusiveArch: %{nodejs_arches} noarch
 BuildRequires: nodejs
@@ -21,7 +21,7 @@ Requires: cockpit-bridge
 %{NPM_PROVIDES}
 
 %description
-Cockpit Sensors Module
+Cockpit Bluetooth Module
 
 %prep
 %autosetup -n %{name} -a 1

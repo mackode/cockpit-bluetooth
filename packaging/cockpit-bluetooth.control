@@ -1,0 +1,10 @@
+Package: cockpit-bluetooth
+Name: Cockpit Bluetooth
+Description: Cockpit Bluetooth Module that displays bluetooth devices and scans. 
+Author: mackode <b.makowski@hotmail.com> 
+Maintainer: mackode <b.makowski@hotmail.com> 
+Version: 1.4.2
+Depends: bluetoothctl
+Architecture: all 
+Homepage: https://github.com/mackode/cockpit-bluetooth
+Website: https://github.com/mackode/cockpit-bluetooth
