@@ -49,15 +49,9 @@ export class Application extends React.Component {
                         const devicesArray = [];
                         var index = 0;
                         success.split(/\n\s*\n/).forEach(raw => {
-                            console.log(index, raw);
-                            var device = [];
-                            raw.split(/(\s+)/).forEach(element => {
-                                console.log(index, element);
-                                const ele = element.trim();
-                                device.push(ele);
-                                index = index + 1;
-                            });
-                            devicesArray.push(device);
+                            console.log("--> ", index, raw);
+                            devicesArray.push(raw);
+                            index = index + 1;
                         });
                         this.setState({ devices: devicesArray, isShowBtnInstall: false });
                 })
