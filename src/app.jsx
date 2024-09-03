@@ -49,7 +49,6 @@ export class Application extends React.Component {
                         const devicesArray = [];
                         var index = 0;
                         success.split(/\r?\n/).forEach(raw => {
-                            console.log("--> ", index, raw);
                             devicesArray.push(raw);
                             index = index + 1;
                         });
@@ -131,16 +130,20 @@ export class Application extends React.Component {
                         {alert != null ? <Alert variant={alert.variant}>{alert.msg}</Alert> : <></>}
                         {isShowBtnInstall ? <Button onClick={this.handleInstallBluetooth}>{_('Install')}</Button> : <></>}
 
+                        <Flex> 
                         {devices !== null
                             ? Array(devices).map((key) => {
                                 return (
-                                    <Card key={key}>
+                                    <FlexItem key={key} style={{ width: "15%" }}>
+                                      <Card key={key}>
                                         <CardTitle>{this.setIcon()} {key}</CardTitle>
-                                    </Card>
+                                      </Card>
+                                    </FlexItem>
                                 );
                             }
                             )
                             : ''}
+                        </Flex>
                     </CardBody>
                 </Card>
             </>
