@@ -123,32 +123,29 @@ export class Application extends React.Component {
         const { devices, alert, isShowBtnInstall, isShowLoading } = this.state;
         return (
             <>
-                <Card>
+              {isShowLoading ? <Spinner isSVG /> : <></>}
+              {alert != null ? <Alert variant={alert.variant}>{alert.msg}</Alert> : <></>}
+              {isShowBtnInstall ? <Button onClick={this.handleInstallBluetooth}>{_('Install')}</Button> : <></>}
+
+              {devices !== null ? Array(devices).map((key) => {
+                return (
+                  <Card>
                     <CardTitle>{_('Devices')}</CardTitle>
                     <CardBody>
-                        {isShowLoading ? <Spinner isSVG /> : <></>}
-                        {alert != null ? <Alert variant={alert.variant}>{alert.msg}</Alert> : <></>}
-                        {isShowBtnInstall ? <Button onClick={this.handleInstallBluetooth}>{_('Install')}</Button> : <></>}
-
                         <Flex> 
-                        {devices !== null
-                            ? Array(devices).map((key) => {
-                                return (
-                                    <FlexItem key={key} style={{ width: "15%" }}>
+                          <FlexItem key={key} style={{ width: "15%" }}>
                                       <Card key={key}>
                                         <CardTitle>{this.setIcon()}</CardTitle>
                                         <CardBody>
                                           <span>{key}<br /></span>
                                         </CardBody>
                                       </Card>
-                                    </FlexItem>
-                                );
-                            }
-                            )
-                            : ''}
+                            </FlexItem>          
                         </Flex>
                     </CardBody>
-                </Card>
+                  </Card>
+                );
+              }) : ''}
             </>
         );
     }
