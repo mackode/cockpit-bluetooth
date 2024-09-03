@@ -48,7 +48,7 @@ export class Application extends React.Component {
                 .done((success) => {
                         const devicesArray = [];
                         var index = 0;
-                        success.split(/\n\s*\n/).forEach(raw => {
+                        success.split(/\r?\n/).forEach(raw => {
                             console.log("--> ", index, raw);
                             devicesArray.push(raw);
                             index = index + 1;
