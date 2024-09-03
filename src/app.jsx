@@ -138,6 +138,8 @@ export class Application extends React.Component {
                                         <CardTitle>{this.setIcon()}</CardTitle>
                                         <CardBody>
                                           <span>{key}<br /></span>
+                                          <br />
+                                          <br />
                                         </CardBody>
                                       </Card>
                             </FlexItem>          
