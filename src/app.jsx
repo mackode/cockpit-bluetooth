@@ -19,7 +19,7 @@
 
 import cockpit from 'cockpit';
 import React from 'react';
-import { Alert, Card, CardTitle, CardBody, Button, Spinner } from '@patternfly/react-core';
+import { Alert, Card, CardTitle, CardBody, Button, Spinner, Flex, FlexItem } from '@patternfly/react-core';
 import { CpuIcon } from '@patternfly/react-icons/dist/esm/icons/';
 
 const _ = cockpit.gettext;
