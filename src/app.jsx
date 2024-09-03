@@ -136,7 +136,10 @@ export class Application extends React.Component {
                                 return (
                                     <FlexItem key={key} style={{ width: "15%" }}>
                                       <Card key={key}>
-                                        <CardTitle>{this.setIcon()} {key}</CardTitle>
+                                        <CardTitle>{this.setIcon()}</CardTitle>
+                                        <CardBody>
+                                          <span>{key}<br /></span>
+                                        </CardBody>
                                       </Card>
                                     </FlexItem>
                                 );
